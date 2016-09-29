@@ -1,0 +1,102 @@
+{{extend 'layout.html'}}
+
+<head>
+    <style>
+    .main{
+        width: 67%;
+        margin:auto;
+    }
+    
+    </style>
+
+<script>
+    function do_ajax_vote(direction) {
+        alert(direction + "voted");
+    }
+
+    jQuery(function () {
+        jQuery('[data-direction=up').click(function () {
+            do_ajax_vote('Up');
+        });
+        jQuery('[data-direction=down').click(function () {
+            do_ajax_vote('down');
+        });
+    });
+</script>
+ 
+</head>
+<form><input type="hidden" id="id" name="id" value="" /></form>
+<div class ="main">
+
+<h1 style ="text-align:center;">
+    ALL THE TASTY RECIPES! 
+</h1>
+
+
+<h3>
+    
+   Latest Updates
+</h3>
+<table class = "table">
+   
+{{for i,row in enumerate(rows):}}
+{{if i==items_per_page: break}}
+    <tr>
+        
+        <td><img style="height:250px;width:250px;align:left;" src="{{=URL( 'download', args=row.picture)}} "</td>
+            <td><a style="font-size:20px;" href = "{{=URL('show',args=row.id)}}">{{=row.title}}</a>
+                <br><br> <i>Description: </i> {{=row.description}}
+                <br><br> <i>Ingredients:</i> {{=row.ingredients}}
+                    
+                
+                </td>
+        <td><i>Posted on:</i><br>{{= row.created_on}}</td>
+        <td><i>by&nbsp;&nbsp;&nbsp;</i>{{=row.created_by.first_name}}</td>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <td>
+</td>
+<td>
+         <span id="row{{=row.id}}">{{=row.votes}}</span>&nbsp;<i>people have liked this</i>
+        </td>
+<td>
+  <button onclick="jQuery('#id').val('{{=row.id}}');
+ajax('vote', ['id'], 'row{{=row.id}}');" data-direction="up">LIKE</button>
+</td>
+
+  
+    {{pass}}
+</table>
+
+
+
+
+
+
+{{if page:}}
+
+    <span style="text-align:left;">
+ <a style="align:center" href="{{=URL(args=[page-1])}}">PREVIOUS</a>
+    </span>
+
+{{pass}}
+
+    
+
+{{if len(rows)>items_per_page:}}
+
+    
+<span style="text-align:right;">
+<a style="align:center; font-size: 20px" href="{{=URL(args=[page+1])}}">NEXT</a>
+    </span>
+    
+
+{{pass}}
+</div>

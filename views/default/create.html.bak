@@ -1,0 +1,23 @@
+{{extend 'layout.html'}}
+
+<head>
+    
+    <style>
+    #main{
+    
+        width: 60%;
+        margin: auto;
+	
+    
+    }
+    
+    </style>
+</head>
+<div id="main">
+    
+<h2>
+    Blog Post
+</h2>
+
+{{=form}}
+</div>

@@ -1,0 +1,67 @@
+{{extend 'layout.html'}}
+
+<head>
+    
+    <style>
+    #des{
+       
+        clear:both;
+    }
+    </style>
+</head>
+<h1>
+{{=post.title}}
+    </h1>
+<hr>
+<i>Posted on {{=post.created_on}} by {{=post.created_by.first_name}}</i>
+<hr>
+
+<div id="contain">
+    
+
+<div id="les">
+<center>   
+    <img style="align:center;height:500px;width:1000px" src="{{=URL( 'download', args=pic)}}"></center>
+</div>
+
+<div id="des">
+    <br><br> <b><i>Description: </b></i> {{=post.description}}
+    <br><br> <b><i>Ingredients:</b></i> {{=post.ingredients}}
+    <br><br> <b><i>Method:</b></i> {{=post.body}}
+                    
+    
+</div>
+</div>
+
+<div>
+    
+
+    <span style="height:250px;width:250px;">
+        </div>  
+
+{{=form}}
+</span>
+<br>
+<br>
+<br>
+<div>
+    
+    <span style="font-size:30px;"><i>Here's what other people have to say about this tasty recipy...</b></i></span>
+    <br>
+    </div>
+    
+    {{for comment in comments:}}
+<div class="well">
+    
+    {{=comment.created_by.first_name}}
+    on {{=comment.created_on}} says
+    <i></i>
+    
+   {{=comment.Comments}}
+   
+
+
+</div> 
+
+<nl>
+{{pass}}

@@ -1,0 +1,40 @@
+{{extend 'layout.html'}}
+<head>
+  <style>
+    .main{
+        width: 67%;
+        margin:auto;
+    }
+    
+    </style>
+</head>
+
+<div class="main">
+    
+
+<h1 style ="text-align:center;">
+ Your Recipes
+</h1>
+
+
+<h3>
+    
+    Your Previous Posts 
+</h3>
+<table class = "table">
+    {{for row in cols:}}
+    <tr>
+        
+        <td><img style="height:250px;width:250px;align:left;" src="{{=URL( 'download', args=row.picture)}} "</td>
+            <td><a href = "{{=URL('show',args=row.id)}}">{{=row.title}}</a></td>
+        <td>{{= row.created_on}}</td>
+        <td><i>by&nbsp;</i>{{=row.created_by.first_name}}</td>
+        <td><span id="row{{=row.id}}">{{=row.votes}}</span>&nbsp;<i>people have liked this</i> </td>
+                <td> <a href ="{{=URL('create',args=row.id)}}"> EDIT </a></td>
+
+        
+    </tr>
+  
+    {{pass}}
+</table>
+</div>
